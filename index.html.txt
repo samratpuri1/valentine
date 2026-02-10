@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine ❤️</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ff6a88, #ff99ac);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+/* Floating hearts */
+.heart {
+  position: absolute;
+  font-size: 18px;
+  animation: float 7s linear infinite;
+}
+
+@keyframes float {
+  from {
+    transform: translateY(100vh);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-10vh);
+    opacity: 0;
+  }
+}
+
+/* Main content */
+.container {
+  z-index: 2;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 900;
+  margin-bottom: 30px;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.buttons {
+  position: relative;
+  height: 120px;
+}
+
+button {
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 30px;
+  margin: 10px;
+}
+
+#yes {
+  background: #ff2e63;
+  color: white;
+}
+
+#no {
+  background: #333;
+  color: white;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none; /* cannot click */
+}
+
+/* Photos screen */
+.photos {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 5;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-area {
+  position: relative;
+  width: 100%;
+  height: 70%;
+}
+
+.photo-area img {
+  position: absolute;
+  width: 65%;
+  max-width: 260px;
+  border-radius: 20px;
+  animation: slowFloat 8s ease-in-out infinite alternate;
+}
+
+.p1 { top: 10%; left: 10%; animation-delay: 0s; }
+.p2 { top: 30%; right: 10%; animation-delay: 2s; }
+.p3 { bottom: 10%; left: 20%; animation-delay: 4s; }
+
+@keyframes slowFloat {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(15px, -20px);
+  }
+}
+
+.final-text {
+  margin-top: 20px;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #ffb6c1;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>
+    SANGITA (SANU)<br>
+    WILL YOU BE MY VALENTINE ? 💖
+  </h1>
+
+  <div class="buttons">
+    <button id="yes">YES 💕</button>
+    <button id="no">NO 😅</button>
+  </div>
+</div>
+
+<!-- Photos -->
+<div class="photos" id="photos">
+  <div class="photo-area">
+    <img src="photo_2026-02-10_17-23-56.jpg" class="p1">
+    <img src="photo_2026-02-10_17-23-57.jpg" class="p2">
+    <img src="photo_2026-02-10_17-23-56 (2).jpg" class="p3">
+  </div>
+  <div class="final-text">
+    Malai tha thiyo tmle maya garxau budi 💞
+  </div>
+</div>
+
+<script>
+/* Create floating hearts */
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerText = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (5 + Math.random() * 4) + "s";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 9000);
+}, 350);
+
+/* NO button escape */
+const noBtn = document.getElementById("no");
+function escapeNo() {
+  noBtn.style.left = Math.random() * 80 + "%";
+  noBtn.style.top = Math.random() * 80 + "%";
+}
+document.addEventListener("mousemove", escapeNo);
+document.addEventListener("touchstart", escapeNo);
+
+/* YES click */
+document.getElementById("yes").onclick = () => {
+  document.getElementById("photos").style.display = "flex";
+};
+</script>
+
+</body>
+</html>
